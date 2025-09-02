@@ -20,6 +20,7 @@ type Mutation{
     createUser(name:String,email:String,password:String):User,
     createTodo(title:String,body:String,userId:String):Todo
     updateTodo(id:ID!,title:String,body:String,userId:String):Todo
+    deleteTodo(id:ID!):Todo
 }
 `
 export default typeDefs

@@ -2,9 +2,13 @@ import User from '../models/user.js';
 import Todo from '../models/todo.js';
 const resolvers ={
     Query:{
-        getUsers:()=>{
-            const getUsers=User.find({})
+        getUsers:async ()=>{
+            const getUsers=await User.find({})
             return getUsers
+        },
+        getTodos:async()=>{
+            const getTodos =await Todo.find({})
+            return getTodos
         }
     },
     Mutation:{
@@ -26,16 +30,21 @@ const resolvers ={
                 return createTodo
         },
         updateTodo:async(parent,args)=>{
-             const {id,title,body,userId} =args
+             const {id,title,body} =args
              const updatableData ={}
-             if(id !== undefined) updatableData.id=id ;
              if(title !== undefined) updatableData.title=title ;
              if(body !== undefined) updatableData.body=body ;
-             if(userId !== undefined) updatableData.userId=userId;
-
              const updateTodo= await Todo.findByIdAndUpdate(id,updatableData,{new:true})
              return updateTodo
-        }
+        },
+        deleteTodo:async(parent,args)=>{
+            const {id} =args
+            if(id){
+                const deleteTodo = await Todo.findByIdAndDelete(id)
+                return deleteTodo
+            }
+        },
+
     }
 }
 
