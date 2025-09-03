@@ -7,7 +7,8 @@ const TodoList = ({handleDeleteTodo ,handleEditTodoBtn}) => {
     if(loading) return  <h1>Loading...</h1>
   return (
     <div>
-        <table border="" style={{marginTop:"25px"}}>
+        <h2>Show All Todos</h2>
+        <table>
             <thead>
                 <tr>
                     <th>Id</th>
@@ -26,7 +27,7 @@ const TodoList = ({handleDeleteTodo ,handleEditTodoBtn}) => {
                                 <td>{item.title}</td>
                                 <td>{item.body}</td>
                                 <td>{item.userId}</td>
-                                <td>
+                                <td className='actions'>
                                     <button onClick={()=>handleEditTodoBtn(item)}>Edit</button>
                                     <button onClick={()=>handleDeleteTodo(item.id)}>Delete</button>
                                 </td>

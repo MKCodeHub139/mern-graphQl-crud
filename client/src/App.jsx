@@ -3,7 +3,6 @@ import './App.css'
 import { useMutation, useQuery } from "@apollo/client/react";
 import Login from './components/Login';
 import CreateTodo from './components/CreateTodo';
-import { GetTodo,GetUser } from './graphql/queries';
 import { Create_TodoMutation,Create_UserMutation,Delete_TodoMutation,Edit_TodoMutation } from './graphql/mutations';
 import TodoList from './components/TodoList';
 import EditTodo from './components/EditTodo';
@@ -53,6 +52,7 @@ function App() {
     }
     const handleEditTodo =(e)=>{
       e.preventDefault()
+      setEditable(false)
       editTodoMutation({variables:{
         id:editTodoData.id,
         title:editTodoData.title,
@@ -62,14 +62,14 @@ function App() {
     }
   
   return (
-    <>
+    <div className='main'>
     <Login setCreateLoginData={setCreateLoginData} handleCreateUser={handleCreateUser}/>
     <CreateTodo setCreateTodoData={setCreateTodoData} handleCreateTodo={handleCreateTodo}/>
     {editable && (
     <EditTodo editTodoData={editTodoData} setEditTodoData={setEditTodoData} handleEditTodo={handleEditTodo}/>
     )}
     <TodoList handleDeleteTodo={handleDeleteTodo} handleEditTodoBtn={handleEditTodoBtn} />
-    </>
+    </div>
   )
 }
 

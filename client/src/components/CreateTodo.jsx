@@ -4,6 +4,7 @@ const CreateTodo = ({setCreateTodoData,handleCreateTodo}) => {
 // 68b6cce5cbfe6a85797a968a
   return (
     <div>
+      <h2>Add Todo</h2>
         <form action="" onSubmit={handleCreateTodo}>
             <input type="text" name="" id="" placeholder='title...' onChange={(e)=> setCreateTodoData((prev)=>({...prev,title:e.target.value}))}/>
             <input type="text" name="" id="" placeholder='body...' onChange={(e)=> setCreateTodoData((prev)=>({...prev,body:e.target.value}))}/>
